@@ -47,9 +47,118 @@
         <script src="javascript/html5shiv.js"></script>
         <script src="javascript/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        #password-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: linear-gradient(135deg, #0d401c 0%, #235130 50%, #1c6932 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #password-gate.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pw-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(248, 195, 44, 0.25);
+            border-radius: 12px;
+            padding: 48px 44px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+        .pw-card img {
+            width: 120px;
+            margin-bottom: 28px;
+        }
+        .pw-card h2 {
+            color: #f8c32c;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0 0 8px;
+            letter-spacing: 0.5px;
+        }
+        .pw-card p.pw-sub {
+            color: rgba(255,255,255,0.65);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            margin: 0 0 28px;
+        }
+        .pw-input-wrap {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .pw-input-wrap input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(248, 195, 44, 0.35);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.08);
+            color: #ffffff;
+            font-family: 'Nunito', sans-serif;
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .pw-input-wrap input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+        .pw-input-wrap input:focus {
+            border-color: #f8c32c;
+        }
+        .pw-btn {
+            width: 100%;
+            padding: 14px;
+            background: #f8c32c;
+            color: #0d401c;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .pw-btn:hover {
+            background: #f5b800;
+        }
+        .pw-btn:active {
+            transform: scale(0.98);
+        }
+        .pw-error {
+            color: #ff7070;
+            font-family: 'Nunito', sans-serif;
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 18px;
+        }
+    </style>
 </head>
 
 <body class="counter-scroll">
+
+    <!-- Password Gate -->
+    <div id="password-gate">
+        <div class="pw-card">
+            <img src="./images/logo/logo3x.png" alt="Sperrin Environmental" />
+            <h2>Members Area</h2>
+            <p class="pw-sub">Enter your password to access this site</p>
+            <div class="pw-input-wrap">
+                <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password" />
+            </div>
+            <button class="pw-btn" id="pw-submit">Enter Site</button>
+            <p class="pw-error" id="pw-error"></p>
+        </div>
+    </div><!-- /.Password Gate -->
 
     <!-- Wrapper -->
     <div id="wrapper">
@@ -3073,6 +3182,40 @@
     <script type="text/javascript" src="js/main.js"></script>
     <!-- /Javascript -->
 
+    <script>
+        (function () {
+            var gate = document.getElementById('password-gate');
+            var input = document.getElementById('pw-input');
+            var btn = document.getElementById('pw-submit');
+            var error = document.getElementById('pw-error');
+            var CORRECT = 'Sperrin2024';
+
+            if (sessionStorage.getItem('se_auth') === '1') {
+                gate.style.display = 'none';
+                return;
+            }
+
+            document.body.style.overflow = 'hidden';
+
+            function attempt() {
+                if (input.value === CORRECT) {
+                    sessionStorage.setItem('se_auth', '1');
+                    gate.classList.add('fade-out');
+                    document.body.style.overflow = '';
+                    setTimeout(function () { gate.style.display = 'none'; }, 500);
+                } else {
+                    error.textContent = 'Incorrect password. Please try again.';
+                    input.value = '';
+                    input.focus();
+                }
+            }
+
+            btn.addEventListener('click', attempt);
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') attempt();
+            });
+        })();
+    </script>
 
 </body>
 

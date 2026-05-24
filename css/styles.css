@@ -1454,8 +1454,8 @@ a.text-white {
 }
 .header .header-inner .header-left .logo-site {
   padding-right: 108px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .header .header-inner .header-left .logo-site img {
   max-width: 364px;
@@ -13326,6 +13326,7 @@ i.fs-12 {
 }
 .s-our-agriculture.style-2 .counter-wrap {
   position: relative;
+  z-index: 2;
   margin-bottom: 80px;
   padding-bottom: 39px;
 }

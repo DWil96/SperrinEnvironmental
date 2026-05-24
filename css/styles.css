@@ -1454,7 +1454,8 @@ a.text-white {
 }
 .header .header-inner .header-left .logo-site {
   padding-right: 108px;
-  padding-top: 6px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 .header .header-inner .header-left .logo-site img {
   max-width: 364px;

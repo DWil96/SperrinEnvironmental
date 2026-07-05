@@ -13408,8 +13408,15 @@ i.fs-12 {
 }
 .s-our-agriculture.style-2 .content-section .image {
   max-width: 478px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
   position: relative;
   z-index: 2;
+}
+.s-our-agriculture.style-2 .content-section .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .s-our-agriculture.style-2 .content-section .exprerience {
   z-index: 3;

@@ -200,6 +200,7 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 *,
@@ -874,7 +875,7 @@ a.text-white {
 /* Extra classes
 -------------------------------------------------------------- */
 #wrapper {
-  width: 100vw;
+  width: 100%;
 }
 
 .hidden {

@@ -4558,6 +4558,12 @@ input[type=number]::-webkit-inner-spin-button {
   height: 697px;
   object-fit: cover;
 }
+.slide-home-3 .image.image-fit-contain {
+  background-color: var(--Primary);
+}
+.slide-home-3 .image.image-fit-contain img {
+  object-fit: contain;
+}
 .slide-home-3::after {
   top: 0;
   left: 0;

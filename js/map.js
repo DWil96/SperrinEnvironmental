@@ -1,10 +1,10 @@
 
 if (document.getElementById('map')) {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmdoYW5kbiIsImEiOiJjbHp3YnUyc2cwMTl3MmtweWo1MjU0cnQ3In0.kJvlxTy_K1nVvwR8y5O8xA';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlcnJpbnNlcGFyYXRvcnMiLCJhIjoiY21yanFjMXo3MDhsNDJ4c2V2d2c1b3R3cyJ9.pKm47D-EZMnsWXeYlYsdwA';
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v11',
-        center: [-0.108968, 51.492933],
+        center: [-7.285954, 54.680239],
         zoom: 14,
         cooperativeGestures: true
     });
@@ -16,7 +16,7 @@ if (document.getElementById('map')) {
                 type: 'Feature',
                 geometry: {
                     type: 'Point',
-                    coordinates: [-0.108968, 51.492933]
+                    coordinates: [-7.285954, 54.680239]
                 }
             }
         ]

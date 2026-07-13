@@ -1,8 +1,6 @@
 <?php
 
-// define("WEBMASTER_EMAIL", 'themesflatcdev3@gmail.com');
-//$address = "example@themeforest.net";
-$address = "themesflatdev2@gmail.com";
+$address = "info@weld-techengineering.co.uk";
 if (!defined("PHP_EOL")) define("PHP_EOL", "\r\n");
 
 $error = false;
@@ -20,26 +18,20 @@ if ( !$error ) {
 	$phone = stripslashes($_POST['phone']);
 	$message = stripslashes($_POST['message']);
 
-	$e_subject = 'You\'ve been contacted by ' . $email . '.';
-	
+	$e_subject = 'You\'ve been contacted by ' . $name . ' via the website.';
 
-	// Configuration option.
-	// You can change this if you feel that you need to.
-	// Developers, you may wish to add more fields to the form, in which case you must be sure to add them here.
+	$e_body = "Name: $name" . PHP_EOL;
+	$e_body .= "Email: $mail" . PHP_EOL;
+	$e_body .= "Phone: $phone" . PHP_EOL . PHP_EOL;
+	$e_body .= "Message:" . PHP_EOL . $message . PHP_EOL;
 
-	$e_body = "You have been contacted by: $email" . PHP_EOL . PHP_EOL;
-	$e_phone = "\r\nPhone: $phone" . PHP_EOL . PHP_EOL;
+	$msg = wordwrap( $e_body, 70 );
 
-	$msg = wordwrap( $e_body  , 70 );
+	$headers = "From: $name <$address>" . PHP_EOL;
+	$headers .= "Reply-To: $mail" . PHP_EOL;
+	$headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
 
-	$headers = "Name: $name" . PHP_EOL;
-	$headers .= "Mail: $mail" . PHP_EOL;
-	$headers .= "Phone: $phone" . PHP_EOL;
-	$headers .= "Message: $message" . PHP_EOL;
-	// $headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
-	// $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
-
-	if(mail($address, $msg, $headers  )) {
+	if(mail($address, $e_subject, $msg, $headers)) {
 
 		// Email has sent successfully, echo a success page.
 	
